@@ -1,0 +1,27 @@
+﻿@page "/"
+
+<PageTitle>Home - The Spy Book Library</PageTitle>
+
+<h1>Spy book library (Demo)</h1>
+
+<p>Welcome to our incredible library.<br />You can borrow some books written by proffesional spyes and also other authors.</p>
+
+<p></p>
+
+<div class="home-stats">
+    <h2>What we have today (@currentTime)</h2>
+    <ul>
+        <li>
+            <span class="stat-item">Total books:</span>
+            <span class="stat-value">@Model.Total</span>
+        </li>
+        <li>
+            <span class="stat-item">Available books:</span>
+            <span class="stat-value">@Model.AvailableBooks</span>
+        </li>
+        <li>
+            <span class="stat-item">Authors:</span>
+            <span class="stat-value">@Model.Authors</span>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,18 @@
+﻿div.home-stats ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+div.home-stats ul li span {
+    display: inline-block;
+    width: 15ch;
+}
+span.stat-item {
+    font-weight: 500;
+}
+
+span.stat-value {
+    text-align: right;
+    font-weight: 600;
+}

@@ -1,0 +1,41 @@
+﻿<EditForm Model="@Model" OnValidSubmit="@OnValidSubmit">
+    <MudGrid>
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <DataAnnotationsValidator />
+                    <MudTextField @bind-Value="Model.Isbn" For="@(() => Model.Isbn)" Label="ISBN" MaxLength="30" Disabled="@IsReadOnly" Required="true" RequiredError="Enter ISBN number" />
+                    <MudTextField @bind-Value="Model.Title" For="@(() => Model.Title)" Label="Title" MaxLength="30" Disabled="@IsReadOnly" Required="true" RequiredError="Enter title" />
+                    <MudTextField @bind-Value="Model.Author" For="@(() => Model.Author)" Label="Author" MaxLength="30" Disabled="@IsReadOnly" Required="true" RequiredError="Enter author" />
+                    <MudSelect @bind-Value="Model.State" For="@(() => Model.State)" Required="true" RequiredError="Choose book state">
+                        @foreach(var state in Statuses)
+                        {
+                            <MudSelectItem Value="state">@state</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Button"
+                               Variant="Variant.Filled"
+                               Color="Color.Surface"
+                               OnClick="@OnBackClick">Back</MudButton>
+                    <span></span>
+                    <MudButton ButtonType="ButtonType.Submit"
+                               Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               Class="ml-auto">@ButtonTitle</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="5">
+            <MudPaper Class="pa-4 mud-height-full">
+                <MudText Typo="Typo.subtitle1">
+                    Validation summary
+                </MudText>
+                <MudText Color="Color.Error">
+                    <ValidationSummary />
+                </MudText>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</EditForm>

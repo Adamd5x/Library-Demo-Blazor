@@ -1,0 +1,45 @@
+﻿@page "/books"
+@using Library.Models.Dto
+
+<PageTitle>Book shelf - The Spy Book Library</PageTitle>
+
+<h3>Books</h3>
+
+<div class="page-action">
+    <MudButton Variant="Variant.Outlined" Color="Color.Warning" OnClick="@OnAddClick">Add a new book</MudButton>
+</div>
+
+<MudTable ServerData="ServerReload" Dense="true" Hover="true" Bordered="true" Striped="true" FixedHeader="true" SortLabel="Sort By" @ref="table">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Book shelf</MudText>
+        <MudSpacer />
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh><MudTableSortLabel SortLabel="Isbn" T="BookDto">ISBN</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="Title" T="BookDto" InitialDirection="SortDirection.Ascending">Title</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="Author" T="BookDto">Author</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="State" T="BookDto">State</MudTableSortLabel></MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="ISBN">@context?.Isbn</MudTd>
+        <MudTd DataLabel="Title">@context?.Title</MudTd>
+        <MudTd DataLabel="Author">@context?.Author</MudTd>
+        <MudTd DataLabel="State">@context?.State</MudTd>
+        <MudTd>
+            <MudIconButton Icon="@Icons.Material.Outlined.AddReaction" Color="Color.Success" Size="Size.Small" @onclick="() => OnEditState(context.Id)"></MudIconButton>
+            <MudIconButton Icon="@Icons.Material.Outlined.Edit" Color="Color.Warning" Size="Size.Small" @onclick="() => OnEdit(context.Id)"></MudIconButton>
+            <span style="display: inline-block; width: 15px"></span>
+            <MudIconButton Icon="@Icons.Material.Outlined.Delete" Color="Color.Error" Size="Size.Small" @onclick="() => DeleteBookAsync(context.Id)"></MudIconButton>
+        </MudTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        <MudText>No matching records found</MudText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <MudText>Loading...</MudText>
+    </LoadingContent>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+</MudTable> 
